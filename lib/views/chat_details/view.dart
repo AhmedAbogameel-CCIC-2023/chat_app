@@ -16,7 +16,7 @@ class ChatDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ChatDetailsCubit(user: user),
+      create: (context) => ChatDetailsCubit(user: user)..getMessages(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(user.email),
