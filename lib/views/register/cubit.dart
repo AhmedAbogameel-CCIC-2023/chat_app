@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +24,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
         password: password!,
       );
       if (credential.user?.uid != null) {
+        await setUserData(credential.user!.uid);
         RouteUtils.pushAndPopAll(ChatsView());
         return;
       }
@@ -33,4 +35,10 @@ class RegisterCubit extends Cubit<RegisterStates> {
     emit(RegisterInit());
   }
 
+  Future<void> setUserData(String uid) async {
+    await FirebaseFirestore.instance.collection('users').doc(uid).set({
+      'email': email,
+      'uid': uid,
+    });
+  }
 }

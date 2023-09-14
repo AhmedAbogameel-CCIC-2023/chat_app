@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: RouteUtils.navigatorKey,
       debugShowCheckedModeBanner: false,
-      // theme: Utils.appTheme,
       home: SplashView(),
     );
   }
