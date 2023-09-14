@@ -21,6 +21,20 @@ class ChatsView extends StatelessWidget {
           ),
         ],
       ),
+      body: ListView.separated(
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: CircleAvatar(
+              child: Text("j"),
+            ),
+            title: Text("jemi@gmail.com"),
+            subtitle: Text('ajccsac'),
+            trailing: Icon(Icons.arrow_forward_ios),
+          );
+        },
+        separatorBuilder: (context, index) => Divider(color: Colors.black),
+      ),
     );
   }
 }
