@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../../core/models/user.dart';
+
 class ChatDetailsView extends StatelessWidget {
-  const ChatDetailsView({Key? key}) : super(key: key);
+  const ChatDetailsView({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(user.email),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -14,8 +23,7 @@ class ChatDetailsView extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 reverse: true,
-                itemCount: 30,
-                // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                itemCount: 1,
                 itemBuilder: (context, index) {
                   final isMe = index.isEven;
                   return Row(
@@ -59,6 +67,7 @@ class ChatDetailsView extends StatelessWidget {
               ),
               onFieldSubmitted: (v) {},
             ),
+            SizedBox(height: 24),
           ],
         ),
       ),

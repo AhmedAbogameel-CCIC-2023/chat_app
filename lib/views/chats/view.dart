@@ -36,15 +36,19 @@ class ChatsView extends StatelessWidget {
             }
             final users = BlocProvider.of<ChatsCubit>(context).users;
             return ListView.separated(
+              padding: EdgeInsets.all(16),
               itemCount: users.length,
               itemBuilder: (context, index) {
                 return ListTile(
+                  contentPadding: EdgeInsets.zero,
                   leading: CircleAvatar(
                     child: Text(users[index].email[0].toUpperCase()),
                   ),
                   title: Text(users[index].email),
                   trailing: Icon(Icons.arrow_forward_ios),
-                  onTap: () => RouteUtils.push(ChatDetailsView()),
+                  onTap: () => RouteUtils.push(ChatDetailsView(
+                    user: users[index],
+                  )),
                 );
               },
               separatorBuilder: (context, index) =>

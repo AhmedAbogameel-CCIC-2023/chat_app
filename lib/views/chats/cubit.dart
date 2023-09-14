@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart' hide User;
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/models/user.dart';
+import '../../core/models/user.dart' as User;
 
 part 'states.dart';
 
 class ChatsCubit extends Cubit<ChatsStates> {
   ChatsCubit() : super(ChatsInit());
 
-  List<User> users = [];
+  List<User.User> users = [];
 
   Future<void> getUsers() async {
     emit(ChatsLoading());
@@ -19,7 +19,7 @@ class ChatsCubit extends Cubit<ChatsStates> {
         if (i.data()['uid'] == FirebaseAuth.instance.currentUser?.uid) {
           continue;
         }
-        users.add(User.fromJson(i.data()));
+        users.add(User.User.fromJson(i.data()));
       }
     } catch (e) {
       print(e);
